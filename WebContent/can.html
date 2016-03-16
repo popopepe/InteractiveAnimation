@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>can</title>
+<script type="text/javascript">
+	window.onload=function(){
+		var pieces = [];
+		var number_of_piece = 24;
+		var piece_width = 20;
+		var piece_height = 300;
+		var first_clientX = 0;
+		var first_clientY = 0;
+		var rotateX = 0;
+		var rotateY = 0;
+		
+		
+		var carousel = document.getElementById('carousel');
+		
+		/* var top = document.createElement('div');
+		top.id = 'top';
+		top.style.transform = "rotateX(90deg)";
+		carousel.appendChild(top); */
+		
+		/* var bottom = document.createElement('div');
+		bottom.style.transform = "rotateX(270deg)";
+		carousel.appendChild(bottom);
+		bottom.id = 'bottom'; */
+		
+		for(var i=0; i< number_of_piece; i++){
+			piece = document.createElement('div');
+			piece.style.transform = "rotateY("+i*15+"deg) translateZ(74px)";
+			carousel.appendChild(piece);
+			var img = document.createElement('img');
+			piece.appendChild(img);
+			img.src = "/InteractiveAnimation/img/can/"+(i+1)+".png"
+			img.ondragstart = function(){
+				return false;
+			}
+			
+		}
+		
+		
+		
+		function startRotate(e){
+			
+			rotateX =  - (first_clientX - e.clientX);
+			rotateY =  first_clientY - e.clientY;
+			carousel.style.transform = "rotateX("+rotateY+"deg) rotateY("+ rotateX+"deg)"; 
+			
+		}
+		function stopRotate(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+			
+		}
+		
+		carousel.onmousedown = function(e){
+			first_clientX = e.clientX;
+			first_clientY = e.clientY;
+			document.onmousemove =	startRotate;
+			document.onmouseup = stopRotate;
+				
+		}
+			
+	}
+</script>
+<style type="text/css">
+body{
+	background: #00184C;
+}
+#carousel{
+	
+	transform-style: preserve-3d;
+	width:10px;
+	height: 300px;
+	margin: 10% auto;
+	transform-origin: 50% 50%;
+}
+
+#top{
+	width: 148px !important;
+	height: 148px !important;
+	border-radius: 74px;
+	background: navy;
+	transform-origin: 0% 0%;
+	
+}
+#bottom{
+	width: 148px !important;
+	height: 148px !important;
+	border-radius: 74px;
+	background: blue;
+
+}
+
+
+#carousel div{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	
+	display: block;
+	position: absolute;
+	width: 20px;
+	height: 300px;
+}
+div img{
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+</style>
+
+</head>
+<body>
+	<div id="carousel">
+	
+	</div>
+</body>
+</html>
