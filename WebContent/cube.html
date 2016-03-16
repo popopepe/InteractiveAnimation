@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>cube</title>
+<script src="/InteractiveAnimation/js/prefixfree.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Noto+Sans:700' rel='stylesheet' type='text/css'>
+<style type="text/css">
+body {
+	background-color: #FCFCFC;
+	margin: 20% auto;
+	width: 200px;
+}
+#container{
+	width:100px;
+	height:100px;
+}
+p{
+	font-family: 'Noto Sans', sans-serif;
+	text-align: center;
+	color: #2D2D2D;
+	
+}
+.subject{
+	font-size: 13pt;
+	margin-bottom: 10px;
+}
+.explain{
+	opacity: 0.5;
+	font-size: 9pt;
+}
+
+section {
+	margin: 70px;
+	width: 60px;
+	height: 60px;
+	position: relative;
+	animation: rint 10s linear 0s infinite;
+	transform-style: preserve-3d;
+}
+
+@keyframes rint {from { transform:rotateX(0deg)rotateY(0deg)rotateZ(0deg);
+	
+}
+
+to {
+	transform: rotateX(360deg) rotateY(360deg) rotateZ(0deg);
+}
+
+}
+section:HOVER div:nth-child(1) {
+	transform: rotateY(0deg) translate3d(0px, 0px, 60px);
+}
+
+section:HOVER div:nth-child(2) {
+	transform: rotateY(90deg) translate3d(0px, 0px, 60px);
+}
+
+section:HOVER div:nth-child(3) {
+	transform: rotateY(180deg) translate3d(0px, 0px, 60px);
+}
+
+section:HOVER div:nth-child(4) {
+	transform: rotateY(270deg) translate3d(0px, 0px, 60px);
+}
+
+section:HOVER div:nth-child(5) {
+	transform: rotateX(90deg) translate3d(0px, 0px, 60px);
+}
+
+section:HOVER div:nth-child(6) {
+	transform: rotateX(270deg) translate3d(0px, 0px, 60px);
+}
+
+section:Hover div {
+	backface-visibility: visible;
+	transition-duration: 2s;
+}
+
+
+div {
+	width: 60px;
+	height: 60px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	transition-duration: 1s;
+}
+
+div:nth-child(1) {
+	transform: rotateY(0deg) translate3d(0px, 0px, 30px);
+	background: #FFCDB2;
+}
+
+div:nth-child(2) {
+	transform: rotateY(90deg) translate3d(0px, 0px, 30px);
+	background: #EFBFAC;
+}
+
+div:nth-child(3) {
+	transform: rotateY(180deg) translate3d(0px, 0px, 30px);
+	background: #FFB4A2;
+}
+
+div:nth-child(4) {
+	transform: rotateY(270deg) translate3d(0px, 0px, 30px);
+	background: #E5989B;
+}
+
+div:nth-child(5) {
+	transform: rotateX(90deg) translate3d(0px, 0px, 30px);
+	background: #B5838D;
+}
+
+div:nth-child(6) {
+	transform: rotateX(270deg) translate3d(0px, 0px, 30px);
+	background: #6D6875;
+}
+</style>
+</head>
+<body>
+	<section>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</section>
+	<p class="subject">CUBE ANIMATION</p>
+	<p class="explain">마우스를 올려주세요</p>
+</body>
+</html>
