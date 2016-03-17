@@ -7,7 +7,7 @@
 <link href='https://fonts.googleapis.com/css?family=Noto+Sans:700' rel='stylesheet' type='text/css'>
 <style type="text/css">
 body{
-	background: #FCFCFC;
+	background: #F99F00;
 }
 p{
 	font-family: 'Noto Sans', sans-serif;
@@ -16,12 +16,12 @@ p{
 	
 }
 .subject{
-	font-size: 13pt;
+	font-size: 18pt;
 	margin-bottom: 10px;
 }
 .explain{
-	opacity: 0.5;
-	font-size: 9pt;
+	opacity: 0.8;
+	font-size: 12pt;
 }
 #explainBox{
 	margin-top: 25%;
@@ -30,7 +30,7 @@ p{
 	position: absolute;
 	width: 400px;
 	height: 8px;
-	background: #2D2D2D;
+	background: #F7F7F7;
 	
 	bottom:0px;
 	overflow: hidden;
@@ -45,11 +45,11 @@ p{
 }
 
 .circle {
-	border: 1px solid black;
 	position: absolute;
 	border-radius: 15px;
 	left: 0px;
 	position: absolute;
+	background: #e20046;
 }
 </style>
 <script type="text/javascript">
@@ -109,7 +109,7 @@ p{
 						circle[i].style.top = circleTop[i] + 'px';
 						
 						if(circleTop[i] + circleHeight >= 490){
-							circle[i].style.top = '460px';
+							circle[i].style.top = '462px';
 							if(y[i]<0)
 								y[i]= -y[i];
 							count++;
