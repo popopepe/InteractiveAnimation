@@ -2,7 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>can</title>
+<title>Rotate Cylinder</title>
+<script src="/InteractiveAnimation/js/prefixfree.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Noto+Sans:700' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
 	window.onload=function(){
 		var pieces = [];
@@ -33,28 +35,23 @@
 			carousel.appendChild(piece);
 			var img = document.createElement('img');
 			piece.appendChild(img);
-			img.src = "/InteractiveAnimation/img/can/"+(i+1)+".png"
+			img.src = "/InteractiveAnimation/img/cylinder/"+(i)+".png"
 			img.ondragstart = function(){
 				return false;
 			}
 			
 		}
 		
-		
-		
 		function startRotate(e){
 			
 			rotateX =  - (first_clientX - e.clientX);
 			rotateY =  first_clientY - e.clientY;
 			carousel.style.transform = "rotateX("+rotateY+"deg) rotateY("+ rotateX+"deg)"; 
-			
 		}
 		function stopRotate(){
 			document.onmousemove = null;
 			document.onmouseup = null;
-			
 		}
-		
 		carousel.onmousedown = function(e){
 			first_clientX = e.clientX;
 			first_clientY = e.clientY;
@@ -76,6 +73,8 @@ body{
 	height: 300px;
 	margin: 10% auto;
 	transform-origin: 50% 50%;
+	
+	
 }
 
 #top{
@@ -109,14 +108,31 @@ div img{
 	border: 0px;
 	margin: 0px;
 	padding: 0px;
+	cursor: pointer;
 }
-
+p{
+	color: #FCFCFC;
+	font-family: 'Noto Sans', sans-serif;
+	text-align: center;
+}
+.subject{
+	font-size: 13pt;
+	margin-bottom: 10px;
+}
+.explain{
+	opacity: 0.5;
+	font-size: 9pt;
+}
 
 </style>
 
 </head>
 <body>
 	<div id="carousel">
+	</div>
+	<div>
+	<p class="subject">Rotate Cylinder Animation</p>
+	<p class="explain">마우스로 드래그하여 회전시키세요</p>
 	
 	</div>
 </body>
