@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="/InteractiveAnimation/js/prefixfree.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Noto+Sans:700' rel='stylesheet' type='text/css'>
+<title>Move Circle</title>
+<style type="text/css">
+body{
+	overflow: hidden;
+	background-color: #00C3FF;
+}
+
+p{
+	font-family: 'Noto Sans', sans-serif;
+	text-align: center;
+	color: #2D2D2D;
+	
+}
+.subject{
+	font-size: 13pt;
+	margin-bottom: 10px;
+}
+.explain{
+	opacity: 0.5;
+	font-size: 9pt;
+}
+#explainBox{
+	margin-top: 25%;
+}
+.circle {
+	position: absolute;
+	border-radius: 30px;
+	left: 0px;
+	background-color: #F7F7F7;
+}
+#explain{
+	position: absolute;
+	width: 200px;
+	height: auto;
+	background: pink;
+	opacity: 0.2;
+	right: 0;
+	top: 0;
+}
+
+</style>
+<script type="text/javascript">
+	window.onload = function() {
+
+		var circle = [];
+		var many = 20;
+		var r = 0;
+		var circleWidth = 60;
+		var circleHeight = 60;
+		
+		var circleLeft = [];
+		var circleTop = [];
+		var x = [];
+		var y = [];
+		var flag = false;
+		
+		//create random circle
+		for (var i = 0; i < many; i++) {
+			circle[i] = document.createElement('div');
+			circle[i].className = 'circle';
+			r = getRandomInt(10, 60);
+			circle[i].style.width = r + 'px';
+			circle[i].style.height = r + 'px';
+			circle[i].style.left = getRandomInt(circleWidth, window.innerWidth
+					- circleWidth)
+					+ 'px';
+			circle[i].style.top = getRandomInt(circleHeight, window.innerHeight
+					- circleHeight)
+					+ 'px';
+			document.body.appendChild(circle[i]);
+		}
+
+		//min to max random Int
+		function getRandomInt(min, max) {
+			return Math.floor(Math.random() * (max - min)) + min;
+		}
+
+
+		//Random velocity, position
+		for (var i = 0; i < many; i++) {
+			circleLeft[i] = parseInt(circle[i].style.left.replace("px", ""));
+			circleTop[i] = parseInt(circle[i].style.top.replace("px", ""));
+			r = parseInt(circle[i].style.width.replace("px",""));
+			
+					
+			
+			x[i] = getRandomInt(-5, 5);
+			if (x[i] == 0)
+				x[i] = getRandomInt(-5, 5);
+			y[i] = getRandomInt(-5, 5);
+			if (y[i] == 0)
+				y[i] = getRandomInt(-5, 5);
+		
+		}
+
+		function anim(e) {
+			if (e.keyCode == '65') {
+				if (flag == true) {
+					return;
+				}
+				/* console.log(x[0]);
+				console.log(x[1]);
+				console.log(x[2]);
+				console.log(x[3]);
+				console.log(x[4]);
+				console.log(x[5]);
+				console.log(x[6]);
+				console.log(x[10]);
+				console.log(x[7]);
+				console.log(x[8]);
+				console.log(x[9]); */
+				moveCircle = setInterval(function() {
+
+					for (var i = 0; i < many; i++) {
+
+						if (circleLeft[i] + circleWidth >= window.innerWidth
+								|| circleLeft[i] < 0) {
+							x[i] = -x[i];
+
+						}
+
+						if (circleTop[i] + circleHeight >= window.innerHeight
+								|| circleTop[i] < 0) {
+
+							y[i] = -y[i];
+						}
+
+						circleLeft[i] += x[i];
+						circleTop[i] += y[i];
+
+						circle[i].style.left = circleLeft[i] + 'px';
+						circle[i].style.top = circleTop[i] + 'px';
+
+					}
+				}, 10);
+				flag = true;
+
+			}
+
+			if (e.keyCode == '83') {
+				for(var i = 0; i<many; i++){
+					x[i] = -x[i];
+					y[i] = -y[i];
+				} 
+
+			}
+			if (e.keyCode == '32') {
+
+				clearInterval(moveCircle);
+				flag = false;
+			}
+
+		}
+		function slow() {
+			for(var i = 0; i<many; i++){
+				x[i] = Math.floor(x[i] * 1/4);
+				if(x[i] == 0){
+					x[i] = 1;
+				}
+				y[i] = Math.floor(y[i] * 1/4);
+				if(y[i] == 0){
+					y[i] = 1;
+				}
+			} 
+			
+		}
+		function fast(){
+			for(var i = 0; i<many; i++){
+				x[i] = x[i] * 4;
+				y[i] = y[i] * 4;
+			} 
+		}
+		document.onkeydown = anim;
+		document.onmousedown = slow;
+		document.onmouseup = fast;
+
+	}
+</script>
+</head>
+<body>
+	
+	<div id="explainBox">
+		<p class="subject">Move Circle Animation</p>
+		<p class="explain">
+		'a' : 시작 <br>
+		's' : 반대로<br>
+		'space' : 멈춤<br>
+		'mouse down' : slow<br>
+		'mouse up' : fast<br>
+		</p>
+	</div>
+	
+</body>
+</html>
