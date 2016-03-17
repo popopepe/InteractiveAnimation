@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Falling circle</title>
+<script src="/InteractiveAnimation/js/prefixfree.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Noto+Sans:700' rel='stylesheet' type='text/css'>
+<style type="text/css">
+body{
+	background: #FCFCFC;
+}
+p{
+	font-family: 'Noto Sans', sans-serif;
+	text-align: center;
+	color: #2D2D2D;
+	
+}
+.subject{
+	font-size: 13pt;
+	margin-bottom: 10px;
+}
+.explain{
+	opacity: 0.5;
+	font-size: 9pt;
+}
+#explainBox{
+	margin-top: 25%;
+}
+#footer{
+	position: absolute;
+	width: 400px;
+	height: 8px;
+	background: #2D2D2D;
+	
+	bottom:0px;
+	overflow: hidden;
+}
+#container {
+	position: absolute;
+	width: 400px;
+	height: 500px;
+	left: 38%;
+	top: 10%;
+	overflow: hidden;
+}
+
+.circle {
+	border: 1px solid black;
+	position: absolute;
+	border-radius: 15px;
+	left: 0px;
+	position: absolute;
+}
+</style>
+<script type="text/javascript">
+	window.onload = function() {
+
+		var circle = [];
+		var many = 1;
+		var circleWidth = 30;
+		var circleHeight = 30;
+
+		var container = document.getElementById('container');
+
+		for (var i = 0; i < many; i++) {
+			circle[i] = document.createElement('div');
+			circle[i].className = 'circle';
+			circle[i].style.width = circleWidth + 'px';
+			circle[i].style.height = circleHeight + 'px';
+			circle[i].style.left = getRandomInt(circleWidth, 400 - circleWidth)
+					+ 'px';
+			circle[i].style.top = '0px';
+			container.appendChild(circle[i]);
+		}
+
+		//min to max random Int
+		function getRandomInt(min, max) {
+			return Math.floor(Math.random() * (max - min)) + min;
+		}
+
+		var circleLeft = [];
+		var circleTop = [];
+		/* var x = []; */
+		var y = [];
+		var count = 0;
+		/* var v = 1; */
+
+		flag = false;
+
+		for (var i = 0; i < many; i++) {
+			circleTop[i] = parseInt(circle[i].style.top.replace("px", ""));
+			y[i] = 0;
+
+			/* console.log('x : ' + x[i]);
+			console.log('y : ' + y[i]); */
+		}
+
+		function anim(e) {
+
+			if (e.keyCode == '65') {
+
+				fallingCircle = setInterval(function() {
+
+					for (var i = 0; i < many; i++) {
+
+						
+						y[i] += 0.1;
+						circleTop[i] += y[i];
+						circle[i].style.top = circleTop[i] + 'px';
+						
+						if(circleTop[i] + circleHeight >= 490){
+							circle[i].style.top = '460px';
+							if(y[i]<0)
+								y[i]= -y[i];
+							count++;
+							y[i] = -y[i] * 0.7;
+							/* console.log(y[i]); */
+							
+						}
+						/* if(count == 20){
+							return;
+						} */
+						
+						
+						
+						/* if (circleTop[i] + circleHeight >= 500
+								|| circleTop[i] < 0) {
+							y[i] = -y[i];
+							
+							count++;
+							if(count == 5){
+								
+								console.log(count);
+								circle[i].style.top =  '470px';
+								flag = true;
+							}
+							
+						}
+						if(flag){
+							return;
+						}
+						console.log('h');
+						y[i] += 0.1;
+						circleTop[i] += y[i];
+						circle[i].style.top = circleTop[i] + 'px'; */
+					}
+				}, 10);
+			}
+			if(e.keyCode == '83'){
+				clearInterval(fallingCircle);
+			}
+			
+		}
+		document.onkeydown = anim;
+	}
+</script>
+</head>
+<body>
+	<div id="container">
+		<div id="footer"></div>
+	</div>
+		<div id="explainBox">
+		<p class="subject">Falling Circle</p>
+		<p class="explain">
+		'a' : 시작<br>
+		중력의 영향을 받은 것 처럼 움직입니다 <br>
+		</p>
+	</div>
+</body>
+</html>
